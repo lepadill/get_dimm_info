@@ -1,4 +1,3 @@
-NODEDE_ID=$1
 #!/bin/bash
 #Parameters
 : "${1?Must provide node name}"
