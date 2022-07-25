@@ -1,6 +1,6 @@
 # get_dimm_info
 
-Before using it for the first time run the following commands:
+Before using the script for the first time run the following commands:
 
 1. export http_proxy=http://proxy-us.intel.com:911
 2. export https_proxy=http://proxy-us.intel.com:911
@@ -11,6 +11,6 @@ Before using it for the first time run the following commands:
 7. cd get_dimm_info
 8. 777 get_dimm_info.sh
 
-For run the script run:
+For execute the script run:
 ./get_dimm_info.sh rXXXsXXX.zp31l10X0X
 
