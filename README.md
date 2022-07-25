@@ -1,6 +1,6 @@
 # get_dimm_info
 
-For first time use run installation.sh or run the following commands:
+For first time use run the following commands:
   1. export http_proxy=http://proxy-us.intel.com:911
   2. export https_proxy=http://proxy-us.intel.com:911
   3. git clone https://github.com/lepadill/get_dimm_info
