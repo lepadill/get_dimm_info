@@ -6,7 +6,7 @@ class dimm_inventory:
             from xlrd import open_workbook
         except:
             with open('libs.sh','w') as bash_file:
-                bash_file.write('export http_proxy='+proxy+'\n'+'export https_proxy='+proxy+'\n'+'pip install xlrd'+'pip install tqdm\n'+'unset http_proxy\nunset https_proxy')
+                bash_file.write('export http_proxy='+proxy+'\n'+'export https_proxy='+proxy+'\n'+'pip install xlrd\n'+'pip install tqdm\n'+'unset http_proxy\nunset https_proxy')
             os.system('chmod 777 libs.sh \n ./libs.sh')
             time.sleep(3.5)
             os.system('rm libs.sh \n clear')
