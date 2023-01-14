@@ -71,16 +71,27 @@ class dimm_inventory:
         except:
             self.dimm_data = False
         return self.dimm_data
-
+    
+    def get_node_name(self):
+        try:
+            with open('node.txt','r') as node_file:
+                node = node_file.read()
+        except:
+            node = 'Unable to get node name'
+        return node
+    
+    
 def main():
     dimm_info = dimm_inventory('cmdb_ci_hardware.py')
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
+        node = dimm_info.get_node_name()
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
+        print(node)
         try:
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
@@ -88,6 +99,9 @@ def main():
                     full_dimm_info = full_dimm_info.replace(',','')
                 print(location_list[index]+' | '+full_dimm_info)
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
+                    full_dimm_info = full_dimm_info.replace('|',',')
+                    file.write(location_list[index]+','+full_dimm_info+('\n'))
+                with open('dimm tracker.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
         except:
