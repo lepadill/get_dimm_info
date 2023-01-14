@@ -2,6 +2,7 @@
 : "${1?Must provide node name}"
 NODE_ID=$1
 pwd=$(pwd)
+echo $1 > node.txt
 ssh -o ConnectTimeout=5 -q $1 exit
 echo $? > ssh_test.txt
 sed -i /$1/d ~/.ssh/known_hosts
