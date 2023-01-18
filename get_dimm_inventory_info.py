@@ -104,7 +104,7 @@ def main():
                 with open('dimm tracker.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.split(',')
                     #full_dimm_info = full_dimm_info.split('')
-                    file.write(location_list[index]+','+full_dimm_info[2]+('\n'))
+                    file.write(full_dimm_info[1]+('\n'))
         except:
             pass
     else:
