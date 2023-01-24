@@ -112,28 +112,14 @@ def main():
             counter = Counter(models)
             common_models = ([ [k,]*v for k,v in counter.items()])
             for index, i in enumerate(common_models):
-                print(len(common_models))
+                num_of_models = len(common_models)
                 i = str(i[index])
                 i = i.replace('/n','')  
                 with open('tracker.csv','a') as file:
-                    file.write(str(date.today())+','+i+','+'\n')
+                    file.write(str(date.today())+','+i+','+str(len(common_models[index]))+'\n')
                     file.close()
     
             
-            
-            #with open('model_file.txt','r') as file:
-            #    model_list = file.readlines()
-            #    model_group = ([list(x) for i, x in groupby(model_list)])
-            #    del model_group[-1]
-            #print(model_group)
-            #print(len(model_group))
-            #for i in model_group:
-            #    c = str(i[0])
-            #    c = c.replace('\n','')
-            #    print(c)
-                #with open('tracker.csv','a',encoding = 'utf-8') as tracker:
-                #    tracker.write(c+','+node)
-                #   tracker.close()
         except:
             pass
     else:
