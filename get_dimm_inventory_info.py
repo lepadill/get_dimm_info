@@ -116,6 +116,7 @@ def main():
                 model_group = ([list(x) for i, x in groupby(model_list)])
                 del model_group[-1]
             print(model_group)
+            print(len(model_group))
             for i in model_group:
                 c = str(i[0])
                 c = c.replace('\n','')
