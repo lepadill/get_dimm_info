@@ -112,10 +112,11 @@ def main():
             counter = Counter(models)
             common_models = ([ [k,]*v for k,v in counter.items()])
             for index, i in enumerate(common_models):
+                print(len(common_models))
                 i = str(i[index])
                 i = i.replace('/n','')  
                 with open('tracker.csv','a') as file:
-                    file.write(str(date.today())+i+','+'/n')
+                    file.write(str(date.today())+','+i+','+'\n')
                     file.close()
     
             
