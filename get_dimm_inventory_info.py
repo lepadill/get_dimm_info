@@ -111,6 +111,16 @@ def main():
                         full_dimm_info = full_dimm_info.split(',')
                         file.write(full_dimm_info[1]+('\n'))
                         file.close()
+            with open('model_file.txt','r') as file:
+                model_list = file.readlines()
+                model_group = ([list(x) for i, x in groupby(model_list)])
+                del model_group[-1]
+            for i in model_group:
+                c = str(i[0])
+                c = c.replace('\n','')
+                with open('tracker.csv','a',encoding = 'utf-8') as tracker:
+                    tracker.write(c+','+node)
+                    tracker.close()
         except:
             pass
     else:
