@@ -109,7 +109,7 @@ def main():
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
                 models = []
                 full_dimm_info = full_dimm_info.split(',')
-                models = models.append(full_dimm_info[1])
+                models.append(full_dimm_info[1])
                 print(models)
                 
                 #with open('model_file.txt','a',encoding = 'utf-8') as file:
