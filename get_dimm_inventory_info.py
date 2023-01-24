@@ -110,7 +110,7 @@ def main():
                 models = []
                 full_dimm_info = full_dimm_info.split(',')
                 models.append(full_dimm_info[1])
-                print(models)
+            print(models)
                 
                 #with open('model_file.txt','a',encoding = 'utf-8') as file:
                 #        full_dimm_info = full_dimm_info.split(',')
