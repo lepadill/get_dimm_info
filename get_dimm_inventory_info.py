@@ -79,10 +79,10 @@ class dimm_inventory:
     def get_node_name(self):
         try:
             with open('node.txt','r') as node_file:
-                node = node_file.read()
+                self.node = node_file.read()
         except:
-            node = 'Unable to get node name'
-        return node
+            self.node = 'Unable to get node name'
+        return self.node
     
     
     
@@ -109,14 +109,13 @@ def main():
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
                 full_dimm_info = full_dimm_info.split(',')
                 models.append(full_dimm_info[1])
-        
             counter = Counter(models)
-            r = ([ [k,]*v for k,v in counter.items()])
-            for index, i in enumerate(r):
+            common_models = ([ [k,]*v for k,v in counter.items()])
+            for index, i in enumerate(common_models):
                 i = str(i[index])
                 i = i.replace('/n','')  
-                with open('aver.txt','a') as file:
-                    file.write(i)
+                with open('tracker.csv','a') as file:
+                    file.write(str(date.today())+i+','+'/n')
                     file.close()
     
             
