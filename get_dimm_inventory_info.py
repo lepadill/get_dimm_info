@@ -1,5 +1,7 @@
 import os, time
 from datetime import date
+from itertools import groupby
+
 class dimm_inventory:    
     def __init__(self,inventory):
         date = date.today()
@@ -83,6 +85,7 @@ class dimm_inventory:
         return node
     
     
+    
 def main():
     dimm_info = dimm_inventory('cmdb_ci_hardware.py')
     ssh_test = dimm_info.check_ssh_connection()
@@ -103,9 +106,9 @@ def main():
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
-            with open('dimm tracker.csv','w',encoding = 'utf-8') as file:
-                    full_dimm_info = full_dimm_info.split(',')
-                    file.write(full_dimm_info[1]+('\n'))
+                with open('model_file.txt','a',encoding = 'utf-8') as file:
+                        full_dimm_info = full_dimm_info.split(',')
+                        file.write(full_dimm_info[1]+('\n'))
         except:
             pass
     else:
