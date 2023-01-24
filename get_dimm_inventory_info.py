@@ -1,6 +1,6 @@
 import os, time
 from datetime import date
-from itertools import groupby
+from collections import Counter
 
 class dimm_inventory:    
     def __init__(self,inventory):
@@ -107,20 +107,26 @@ def main():
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
-                with open('model_file.txt','a',encoding = 'utf-8') as file:
-                        full_dimm_info = full_dimm_info.split(',')
-                        file.write(full_dimm_info[1]+('\n'))
-                        file.close()
-            with open('model_file.txt','r') as file:
-                model_list = file.readlines()
-                model_group = ([list(x) for i, x in groupby(model_list)])
-                del model_group[-1]
-            print(model_group)
-            print(len(model_group))
-            for i in model_group:
-                c = str(i[0])
-                c = c.replace('\n','')
-                print(c)
+                models = []
+                full_dimm_info = full_dimm_info.split(',')
+                models = models.append(full_dimm_info[1])
+                print(models)
+                
+                #with open('model_file.txt','a',encoding = 'utf-8') as file:
+                #        full_dimm_info = full_dimm_info.split(',')
+                #        file.write(full_dimm_info[1]+('\n'))
+                #        file.close()
+            
+            #with open('model_file.txt','r') as file:
+            #    model_list = file.readlines()
+            #    model_group = ([list(x) for i, x in groupby(model_list)])
+            #    del model_group[-1]
+            #print(model_group)
+            #print(len(model_group))
+            #for i in model_group:
+            #    c = str(i[0])
+            #    c = c.replace('\n','')
+            #    print(c)
                 #with open('tracker.csv','a',encoding = 'utf-8') as tracker:
                 #    tracker.write(c+','+node)
                 #   tracker.close()
