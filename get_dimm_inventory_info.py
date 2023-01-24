@@ -99,6 +99,7 @@ def main():
         #print(node)
         try:
             os.system('rm model_file.txt')
+            models = []
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
                 if ',' in full_dimm_info:
@@ -107,7 +108,6 @@ def main():
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
-                models = []
                 full_dimm_info = full_dimm_info.split(',')
                 models.append(full_dimm_info[1])
             print(models)
