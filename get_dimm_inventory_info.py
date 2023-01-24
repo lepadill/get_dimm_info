@@ -118,7 +118,7 @@ def main():
             for i in model_group:
                 c = str(i[0])
                 c = c.replace('\n','')
-                with open('tracker.csv','a',encoding = 'utf-8') as tracker:
+                with open('tracker.csv','w',encoding = 'utf-8') as tracker:
                     tracker.write(c+','+node)
                     tracker.close()
         except:
