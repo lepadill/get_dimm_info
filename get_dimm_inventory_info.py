@@ -98,6 +98,7 @@ def main():
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
         #print(node)
         try:
+            os.system('rm model_file.txt')
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
                 if ',' in full_dimm_info:
@@ -110,7 +111,6 @@ def main():
                         full_dimm_info = full_dimm_info.split(',')
                         file.write(full_dimm_info[1]+('\n'))
                         file.close()
-            os.system('rm model_file.txt')
         except:
             pass
     else:
