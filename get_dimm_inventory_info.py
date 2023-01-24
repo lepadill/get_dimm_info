@@ -98,7 +98,6 @@ def main():
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
         #print(node)
         try:
-            os.system('rm model_file.txt')
             models = []
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
@@ -110,12 +109,17 @@ def main():
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
                 full_dimm_info = full_dimm_info.split(',')
                 models.append(full_dimm_info[1])
-            print(models)
-                
-                #with open('model_file.txt','a',encoding = 'utf-8') as file:
-                #        full_dimm_info = full_dimm_info.split(',')
-                #        file.write(full_dimm_info[1]+('\n'))
-                #        file.close()
+        
+            counter = Counter(models)
+            r = ([ [k,]*v for k,v in counter.items()])
+            for index, i in enumerate(r):
+                i = str(i[index])
+                i = i.replace('/n','')  
+                with open('aver.txt','a') as file:
+                    file.write(i)
+                    file.close()
+    
+            
             
             #with open('model_file.txt','r') as file:
             #    model_list = file.readlines()
