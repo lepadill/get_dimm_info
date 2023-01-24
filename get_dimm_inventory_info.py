@@ -4,7 +4,7 @@ from itertools import groupby
 
 class dimm_inventory:    
     def __init__(self,inventory):
-        date = date.today()
+        #date = date.today()
         proxy = 'http://proxy-us.intel.com:911'
         try:
             from xlrd import open_workbook
@@ -109,6 +109,7 @@ def main():
                 with open('model_file.txt','a',encoding = 'utf-8') as file:
                         full_dimm_info = full_dimm_info.split(',')
                         file.write(full_dimm_info[1]+('\n'))
+                        file.close()
         except:
             pass
     else:
