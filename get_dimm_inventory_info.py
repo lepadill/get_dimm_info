@@ -95,6 +95,7 @@ class dimm_inventory:
                     self.ticket_number = self.ticket_number[-1]
                     self.ticket_number = int(self.ticket_number)    
                     print(self.ticket_number)
+                    print(type(self.ticket_number))
                 except:
                     print('cagas')
                 if type(self.ticket_number) == int:
