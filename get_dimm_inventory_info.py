@@ -79,7 +79,6 @@ class dimm_inventory:
     def get_node_name(self):
         try:
             self.user = subprocess.check_output('pwd')
-            print(self.user)
             self.user = str(self.user)
             self.user = self.user.split('/')
             self.user = self.user[2] 
@@ -87,8 +86,6 @@ class dimm_inventory:
                 self.node = node_file.read()
         except:
             self.node = 'Unable to get node name'
-            print('cagaste')
-            
         return self.user, self.node
     
     def get_ticket_number(self):
@@ -144,7 +141,7 @@ def main():
                 i = str(i[index])
                 i = i.replace('/n','')  
                 with open('tracker.csv','a') as file:
-                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+ticket_number+','+str(len(common_models[index]))+','+'\n')
+                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+ticket_number+','+str(len(common_models[index]))+','+user+'\n')
                     file.close()
     
             
