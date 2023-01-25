@@ -94,12 +94,12 @@ class dimm_inventory:
                     self.ticket_number = self.ticket_number.split('-')
                     self.ticket_number = self.ticket_number[-1]
                     self.ticket_number = int(self.ticket_number)    
-                    print(self.ticket_number)
-                    print(type(self.ticket_number))
+                    #print(self.ticket_number)
+                    #print(type(self.ticket_number))
                 except:
-                    print('cagas')
+                    pass
                 if type(self.ticket_number) == int:
-                    self.ticket_number = 'ASCGA-'+self.ticket_number
+                    self.ticket_number = 'ASCGA-'+str(self.ticket_number)
                 else:
                     self.ticket_number = 'Not in manintenance pool' 
         except:
