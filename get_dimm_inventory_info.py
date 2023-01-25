@@ -1,4 +1,4 @@
-import os, time
+import os, time, subprocess
 from datetime import date
 from collections import Counter
 
@@ -78,10 +78,10 @@ class dimm_inventory:
     
     def get_node_name(self):
         try:
-            self.user = os.system('pwd')
+            self.user = subprocess.check_output('pwd')
             print(self.user)
             self.user = self.user.split('/')
-            self.user = self.user[1] 
+            self.user = self.user[2] 
             with open('node.txt','r') as node_file:
                 self.node = node_file.read()
         except:
