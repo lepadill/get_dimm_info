@@ -84,6 +84,7 @@ class dimm_inventory:
             self.user = self.user[2] 
             with open('node.txt','r') as node_file:
                 self.node = node_file.read()
+                self.node = self.node.replace('\n','')
         except:
             self.node = 'Unable to get node name'
         return self.user, self.node
@@ -122,7 +123,6 @@ def main():
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
         try:
-            print(user)
             models = []
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
