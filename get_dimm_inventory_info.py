@@ -84,6 +84,19 @@ class dimm_inventory:
             self.node = 'Unable to get node name'
         return self.node
     
+    def get_ticket_number(self):
+        try:
+            with open('pool.txt','r') as pool_file:
+                self.ticket_number = pool_file.read()
+                self.ticket_number = self.ticket_number.split('_')
+                self.ticket_number = self.ticket_number[-2]
+                if type(self.ticket_number) == int:
+                    pass
+                else:
+                    self.ticket_number = 'Not in manintenance pool' 
+        except:
+            self.ticket_number = 'Unable to get ticket number'
+        return self.ticket_number    
     
     
 def main():
@@ -91,12 +104,13 @@ def main():
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
         node = dimm_info.get_node_name()
+        ticket_number = dimm_info.get_ticket_number()
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
-        #print(node)
+        print(ticket_number)
         try:
             models = []
             for index, x in enumerate (serials_list):

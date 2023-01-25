@@ -3,6 +3,7 @@
 NODE_ID=$1
 pwd=$(pwd)
 echo $1 > node.txt
+sysman --status -M $1| grep 'pool' > pool.txt
 ssh -o ConnectTimeout=5 -q $1 exit
 echo $? > ssh_test.txt
 sed -i /$1/d ~/.ssh/known_hosts
