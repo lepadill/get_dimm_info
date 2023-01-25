@@ -4,7 +4,6 @@ from collections import Counter
 
 class dimm_inventory:    
     def __init__(self,inventory):
-        #date = date.today()
         proxy = 'http://proxy-us.intel.com:911'
         try:
             from xlrd import open_workbook
