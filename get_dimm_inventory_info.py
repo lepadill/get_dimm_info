@@ -93,6 +93,7 @@ class dimm_inventory:
                 try:
                     self.ticket_number = self.ticket_number.split('-')
                     self.ticket_number = self.ticket_number[-1]
+                    print(self.ticket_number)
                 except:
                     pass
                 if type(self.ticket_number) == int:
@@ -101,6 +102,7 @@ class dimm_inventory:
                     self.ticket_number = 'Not in manintenance pool' 
         except:
             self.ticket_number = 'Unable to get ticket number'
+            
         return self.ticket_number    
     
     
