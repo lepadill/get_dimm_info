@@ -90,8 +90,13 @@ class dimm_inventory:
                 self.ticket_number = pool_file.read()
                 self.ticket_number = self.ticket_number.split('_')
                 self.ticket_number = self.ticket_number[-2]
-                if type(self.ticket_number) == int:
+                try:
+                    self.ticket_number = self.ticket_number.split('-')
+                    self.ticket_number = self.ticket_number[-1]
+                except:
                     pass
+                if type(self.ticket_number) == int:
+                    self.ticket_number = 'ASCGA-'+self.ticket_number
                 else:
                     self.ticket_number = 'Not in manintenance pool' 
         except:
