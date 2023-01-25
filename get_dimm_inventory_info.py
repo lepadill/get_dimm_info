@@ -78,11 +78,17 @@ class dimm_inventory:
     
     def get_node_name(self):
         try:
+            self.user = os.system('pwd')
+            print(self.user)
+            self.user = self.user.split('/')
+            self.user = self.user[1] 
             with open('node.txt','r') as node_file:
                 self.node = node_file.read()
         except:
             self.node = 'Unable to get node name'
-        return self.node
+            print('cagaste')
+            
+        return self.user, self.node
     
     def get_ticket_number(self):
         try:
@@ -94,8 +100,6 @@ class dimm_inventory:
                     self.ticket_number = self.ticket_number.split('-')
                     self.ticket_number = self.ticket_number[-1]
                     self.ticket_number = int(self.ticket_number)    
-                    #print(self.ticket_number)
-                    #print(type(self.ticket_number))
                 except:
                     pass
                 if type(self.ticket_number) == int:
@@ -112,15 +116,15 @@ def main():
     dimm_info = dimm_inventory('cmdb_ci_hardware.py')
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
-        node = dimm_info.get_node_name()
+        user, node = dimm_info.get_node_name()
         ticket_number = dimm_info.get_ticket_number()
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
-        print(ticket_number)
         try:
+            print(user)
             models = []
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
@@ -139,7 +143,7 @@ def main():
                 i = str(i[index])
                 i = i.replace('/n','')  
                 with open('tracker.csv','a') as file:
-                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+'\n')
+                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+ticket_number+','+str(len(common_models[index]))+','+'\n')
                     file.close()
     
             
