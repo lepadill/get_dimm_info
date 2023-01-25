@@ -80,6 +80,7 @@ class dimm_inventory:
         try:
             self.user = subprocess.check_output('pwd')
             print(self.user)
+            self.user = str(self.user)
             self.user = self.user.split('/')
             self.user = self.user[2] 
             with open('node.txt','r') as node_file:
