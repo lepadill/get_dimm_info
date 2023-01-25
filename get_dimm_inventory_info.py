@@ -141,7 +141,7 @@ def main():
                 i = str(i[index])
                 i = i.replace('/n','')  
                 with open('tracker.csv','a') as file:
-                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+','+ticket_number+','+','+str(len(common_models[index]))+','+user+'\n')
+                    file.write(str(date.today())+','+str(len(common_models[index]))+','+i+','+ticket_number+','+','+str(len(common_models[index]))+','+user+','+node+'\n')
                     file.close()
     
             
