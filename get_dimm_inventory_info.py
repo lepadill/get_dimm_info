@@ -93,8 +93,7 @@ class dimm_inventory:
                 try:
                     self.ticket_number = self.ticket_number.split('-')
                     self.ticket_number = self.ticket_number[-1]
-                    print(self.ticket_number)
-                    print(type(self.ticket_number))
+                    self.ticket_number = int(self.ticket_number)    
                 except:
                     pass
                 if type(self.ticket_number) == int:
