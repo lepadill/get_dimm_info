@@ -73,7 +73,7 @@ class dimm_inventory:
         return self.dimm_data
 
 def main():
-    dimm_info = dimm_inventory('cmdb_ci_hardware.py')
+    dimm_info = dimm_inventory('cmdb_ci_hardware.xls')
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
         dmidecode_info = dimm_info.get_dmidecode_data()
