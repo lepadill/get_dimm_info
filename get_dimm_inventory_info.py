@@ -89,6 +89,8 @@ def main():
                     full_dimm_info = full_dimm_info.replace(',','')
                 table = full_dimm_info.split("|")
                 position = location_list[index]
+                print(position)
+                print(type(position))
                 table = table.append(position)
                 print(table)   
                 #table2 = table.append(location_list[list])
