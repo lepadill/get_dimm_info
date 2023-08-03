@@ -1,4 +1,4 @@
-import os, time
+import os, time, tabulate
 class dimm_inventory:    
     def __init__(self,inventory):
         proxy = 'http://proxy-us.intel.com:911'
@@ -86,7 +86,9 @@ def main():
                 full_dimm_info = dimm_info.match_info(x,full_rows)
                 if ',' in full_dimm_info:
                     full_dimm_info = full_dimm_info.replace(',','')
-                print(location_list[index]+' | '+full_dimm_info)
+                print(full_dimm_info)   
+                #table = full_dimm_info.split()    
+                #print(location_list[index]+' | '+full_dimm_info)
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
