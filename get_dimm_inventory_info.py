@@ -92,6 +92,7 @@ def main():
                 position = location_list[index]
                 table.insert(0,position)
                 table = ','.join(table)
+                table = table.replace(' , ',' ').replace(',',' ')
                 print(table)
                    
                 #table2 = table.append(location_list[list])
