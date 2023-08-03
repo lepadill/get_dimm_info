@@ -1,4 +1,5 @@
 import os, time
+from tabulate import tabulate
 class dimm_inventory:    
     def __init__(self,inventory):
         proxy = 'http://proxy-us.intel.com:911'
@@ -89,8 +90,6 @@ def main():
                     full_dimm_info = full_dimm_info.replace(',','')
                 table = full_dimm_info.split("|")
                 position = location_list[index]
-                print(position)
-                print(type(position))
                 table.insert(0,position)
                 print(table)   
                 #table2 = table.append(location_list[list])

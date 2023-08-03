@@ -6,4 +6,9 @@ ssh -o ConnectTimeout=5 -q $1 exit
 echo $? > ssh_test.txt
 sed -i /$1/d ~/.ssh/known_hosts
 ssh -o ConnectTimeout=5 $1 dmidecode -t memory | grep -B6 Serial > dmidecode.txt
-python $pwd/get_dimm_inventory_info.py
+if python -c "import tqdm, xlsxwriter" &> /dev/null; then
+    python x.py
+else
+    pip install --proxy="http://proxy-us.intel.com:911" tabulate
+    python $pwd/get_dimm_inventory_info.py
+fi
