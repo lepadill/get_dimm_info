@@ -87,8 +87,9 @@ def main():
                 if ',' in full_dimm_info:
                     full_dimm_info = full_dimm_info.replace(',','')
                 table = full_dimm_info.split("|")   
-                table = table.append(location_list[list])
-                print(table)
+                table2 = table.append(location_list[list])
+                print(table2)
+                print('uy')
                 #location_list[list]
                 #table = full_dimm_info.split()    
                 #print(location_list[index]+' | '+full_dimm_info)
