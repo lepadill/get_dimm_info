@@ -1,4 +1,4 @@
-import os, time, tabulate
+import os, time
 class dimm_inventory:    
     def __init__(self,inventory):
         proxy = 'http://proxy-us.intel.com:911'
