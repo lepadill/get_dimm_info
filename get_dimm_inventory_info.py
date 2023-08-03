@@ -81,6 +81,8 @@ def main():
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
+        print(serials_list)
+        '''
         try:
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
@@ -92,6 +94,7 @@ def main():
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
         except:
             pass
+        '''    
     else:
         print('No SSH connection...')
 
