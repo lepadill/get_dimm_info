@@ -84,12 +84,13 @@ def main():
         try:
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
+                print(full_dimm_info)
                 if ',' in full_dimm_info:
                     full_dimm_info = full_dimm_info.replace(',','')
-                table = full_dimm_info.split("|")   
-                table2 = table.append(location_list[list])
-                print(table2)
-                print('uy')
+                #table = full_dimm_info.split("|")   
+                #table2 = table.append(location_list[list])
+                #print(table2)
+                #print('uy')
                 #location_list[list]
                 #table = full_dimm_info.split()    
                 #print(location_list[index]+' | '+full_dimm_info)
