@@ -91,7 +91,9 @@ def main():
                 table = full_dimm_info.split("|")
                 position = location_list[index]
                 table.insert(0,position)
-                print(table)   
+                table = ','.join(table)
+                print(table)
+                   
                 #table2 = table.append(location_list[list])
                 #print(table2)
                 #print('uy')
