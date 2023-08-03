@@ -91,7 +91,7 @@ def main():
                 position = location_list[index]
                 print(position)
                 print(type(position))
-                table.append(position)
+                table.insert(0,position)
                 print(table)   
                 #table2 = table.append(location_list[list])
                 #print(table2)
