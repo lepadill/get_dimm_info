@@ -107,7 +107,7 @@ def main():
                 #with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                 #    full_dimm_info = full_dimm_info.replace('|',',')
                 #    file.write(location_list[index]+','+full_dimm_info+('\n'))
-            print(tabulate(final_table, headers=headers, tablefmt="simple"))
+            print(tabulate(final_table, headers=headers, tablefmt="outline"))
         except:
             pass
     else:
