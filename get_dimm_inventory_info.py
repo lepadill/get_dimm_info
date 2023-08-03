@@ -77,13 +77,15 @@ def main():
     dimm_info = dimm_inventory('cmdb_ci_hardware.xls')
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
+        headers = 'Location,Vendor,Model,Serial Number,Barcode,Borrower'
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
-            file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
+            file.write(f'{headers} \n')
         try:
             final_table = []
+            headers = headers.split(',')
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
                 #print(full_dimm_info)
@@ -105,7 +107,7 @@ def main():
                 #with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                 #    full_dimm_info = full_dimm_info.replace('|',',')
                 #    file.write(location_list[index]+','+full_dimm_info+('\n'))
-            print(tabulate(final_table))
+            print(tabulate(final_table, headers=headers, tablefmt="simple"))
         except:
             pass
     else:
