@@ -83,6 +83,7 @@ def main():
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
             file.write('Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\n')
         try:
+            final_table = []
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
                 #print(full_dimm_info)
@@ -91,9 +92,8 @@ def main():
                 table = full_dimm_info.split("|")
                 position = location_list[index]
                 table.insert(0,position)
-                table = ','.join(table)
-                table = table.replace(' , ',' ').replace(',',' ')
-                print(table)
+                final_table.append(table)
+                
                    
                 #table2 = table.append(location_list[list])
                 #print(table2)
@@ -105,6 +105,7 @@ def main():
                 #with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                 #    full_dimm_info = full_dimm_info.replace('|',',')
                 #    file.write(location_list[index]+','+full_dimm_info+('\n'))
+            print(tabulate(final_table))
         except:
             pass
     else:
