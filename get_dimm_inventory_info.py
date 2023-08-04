@@ -22,7 +22,7 @@ class dimm_inventory:
             node = node_file.readline()
             node = str(node).replace('\n','')
             print(node)
-            self.dmidecode_info = os.popen(f'ssh -o ConnectTimeout=5 {node} dmidecode -t memory | grep -B6 Serial')
+            self.dmidecode_info = os.popen(f'ssh -o ConnectTimeout=5 {node} dmidecode -t memory | grep -B6 Serial').read()
             self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
             self.dmidecode_info = self.dmidecode_info.split('--')
             print(self.dmidecode_info)
