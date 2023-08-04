@@ -1,18 +1,9 @@
 import os, time
 from tabulate import tabulate
 from xlrd import open_workbook
+
 class dimm_inventory:    
     def __init__(self,inventory):
-        proxy = 'http://proxy-us.intel.com:911'
-        try:
-            from xlrd import open_workbook
-        except:
-            with open('libs.sh','w') as bash_file:
-                bash_file.write('export http_proxy='+proxy+'\n'+'export https_proxy='+proxy+'\n'+'pip install xlrd\n'+'pip install tqdm\n'+'unset http_proxy\nunset https_proxy')
-            os.system('chmod 777 libs.sh \n ./libs.sh')
-            time.sleep(3.5)
-            os.system('rm libs.sh \n clear')
-        from xlrd import open_workbook
         self.book = open_workbook(inventory)
         self.dws = self.book.sheet_by_index(0)
     
