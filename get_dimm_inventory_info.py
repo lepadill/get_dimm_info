@@ -18,19 +18,7 @@ class dimm_inventory:
                 quit()
             os.popen('rm ssh_test.txt')
         return ssh_result
-    
-    def get_os_data(self):
-        with open('node.txt') as node_file:
-            node = node_file.readline()
-            node = str(node).replace('\n','')
-            self.dmidecode_info = os.popen(f'ssh -q -o "StrictHostKeyChecking no" {node}  dmidecode -t memory | grep -B6 Serial').read()
-            print(self.dmidecode_info)
-            self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
-            self.dmidecode_info = self.dmidecode_info.split('--')
-            print(self.dmidecode_info)
-            os.popen('rm node.txt')
-        return self.dmidecode_info
-    
+     
     def get_dmidecode_data(self):
         with open("dmidecode.txt", "r") as file:
             self.dmidecode_info = file.read()
@@ -95,7 +83,6 @@ def main():
             headers = headers.split(',')
             for index, x in enumerate (serials_list):
                 full_dimm_info = dimm_info.match_info(x,full_rows)
-                #print(full_dimm_info)
                 if ',' in full_dimm_info:
                     full_dimm_info = full_dimm_info.replace(',','')
                 table = full_dimm_info.split("|")
@@ -106,6 +93,7 @@ def main():
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
             print(tabulate(final_table, headers=headers, tablefmt="rounded_outline"))
+            os.popen('rm dmidecode.txt')
         except:
             pass
     else:
