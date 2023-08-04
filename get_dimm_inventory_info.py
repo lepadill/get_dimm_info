@@ -21,9 +21,11 @@ class dimm_inventory:
         with open('node.txt') as node_file:
             node = node_file.readline()
             node = str(node).replace('\n','')
+            print(node)
             self.dmidecode_info = os.popen(f'ssh -o ConnectTimeout=5 {node} dmidecode -t memory | grep -B6 Serial')
             self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
             self.dmidecode_info = self.dmidecode_info.split('--')
+            print(self.dmidecode_info)
         return self.dmidecode_info
     
     def get_dmidecode_data(self):
