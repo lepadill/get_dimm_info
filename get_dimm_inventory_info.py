@@ -1,4 +1,5 @@
-import os, time, tabulate
+import os, time, 
+from tabulate import tabulate
 from xlrd import open_workbook
 class dimm_inventory:    
     def __init__(self,inventory):
