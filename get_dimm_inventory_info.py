@@ -72,7 +72,7 @@ def main():
     dimm_info = dimm_inventory('cmdb_ci_hardware.xls')
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
-        headers = 'Location,Vendor,Model,Serial Number,Barcode,Borrower'
+        headers = '\033[1m'+'Location,Vendor,Model,Serial Number,Barcode,Borrower'+'\033[0m'
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
