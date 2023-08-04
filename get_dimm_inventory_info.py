@@ -28,6 +28,7 @@ class dimm_inventory:
             self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
             self.dmidecode_info = self.dmidecode_info.split('--')
             print(self.dmidecode_info)
+            os.popen('rm node.txt')
         return self.dmidecode_info
     
     def get_dmidecode_data(self):
@@ -84,9 +85,6 @@ def main():
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
         headers = 'Location,Vendor,Model,Serial Number,Barcode,Borrower'
-        #dmidecode_info = dimm_info.get_os_data()
-        #print(dmidecode_info)
-        
         dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
@@ -104,15 +102,6 @@ def main():
                 position = location_list[index]
                 table.insert(0,position)
                 final_table.append(table)
-                
-                   
-                #table2 = table.append(location_list[list])
-                #print(table2)
-                #print('uy')
-                #location_list[list]
-                #table = full_dimm_info.split()    
-                #print(location_list[index]+' | '+full_dimm_info)
-                
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
