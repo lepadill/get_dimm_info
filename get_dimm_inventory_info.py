@@ -1,5 +1,5 @@
-import os, time
-from tabulate import tabulate
+import os, time, tabulate
+from xlrd import open_workbook
 class dimm_inventory:    
     def __init__(self,inventory):
         proxy = 'http://proxy-us.intel.com:911'
