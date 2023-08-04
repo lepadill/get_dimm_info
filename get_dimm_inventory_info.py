@@ -18,7 +18,13 @@ class dimm_inventory:
         return ssh_result
     
     def get_os_data(self):
-        pass
+        with open('node.txt') as node_file:
+            node = node_file.readline()
+            node = str(node).replace('\n','')
+            self.dmidecode_info = os.popen(f'ssh -o ConnectTimeout=5 {node} dmidecode -t memory | grep -B6 Serial')
+            self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
+            self.dmidecode_info = self.dmidecode_info.split('--')
+        return self.dmidecode_info
     
     def get_dmidecode_data(self):
         with open("dmidecode.txt", "r") as file:
@@ -74,7 +80,10 @@ def main():
     ssh_test = dimm_info.check_ssh_connection()
     if ssh_test == '0':
         headers = 'Location,Vendor,Model,Serial Number,Barcode,Borrower'
-        dmidecode_info = dimm_info.get_dmidecode_data()
+        dmidecode_info = dimm_info.get_os_data()
+        print(dmidecode_info)
+        
+        #dmidecode_info = dimm_info.get_dmidecode_data()
         location_list, serials_list = dimm_info.get_location_serials()
         full_rows =  dimm_info.get_inventory_rows()
         with open('dimm inventory.csv','w',encoding = 'utf-8') as file:
