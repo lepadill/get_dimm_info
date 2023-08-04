@@ -14,7 +14,11 @@ class dimm_inventory:
                 ssh_result = str(ssh_result).replace('\n','')
             except:
                 print('Unable to establish SSH connection...')
+            os.popen('rm ssh_test.txt')
         return ssh_result
+    
+    def get_os_data(self):
+        pass
     
     def get_dmidecode_data(self):
         with open("dmidecode.txt", "r") as file:
@@ -36,7 +40,7 @@ class dimm_inventory:
         for i,x in enumerate(self.serial_list):
             self.serial_list[i] = self.serial_list[i].replace(' ','')
         for i,x in enumerate(self.location_list):
-            self.location_list[i] = self.location_list[i].replace('Bank Locator','').replace('_',' ')
+            self.location_list[i] = self.location_list[i].replace('Bank Locator','').replace('_',' ').replace('DIMM','Slot')
         if '-' in self.serial_list[0]:
             for i,x in enumerate(self.serial_list):
                 x = x.split('-')

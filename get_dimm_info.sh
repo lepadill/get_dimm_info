@@ -10,5 +10,6 @@ if python -c "import tabulate" &> /dev/null; then
     python $pwd/get_dimm_inventory_info.py
 else
     pip install --proxy="http://proxy-us.intel.com:911" tabulate
+    pip install --proxy="http://proxy-us.intel.com:911" xlrd
     python $pwd/get_dimm_inventory_info.py
 fi
