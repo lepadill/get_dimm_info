@@ -62,7 +62,7 @@ class dimm_inventory:
         row = 0
         while row <= rows:
             value = str(self.dws.cell(row,0)).replace('text:','').replace("'",'')
-            print(value)
+            #print(value)
             if serial in value:
                 self.dimm_data = (str(self.dws.cell(row,1)).replace('text:','').replace("'",'')+' | '+str(self.dws.cell(row,2)).replace('text:','').replace("'",'')+' | '+str(self.dws.cell(row,0)).replace('text:','').replace("'",'')+' | '+str(self.dws.cell(row,3)).replace('text:','').replace("'",'')+' | '+str(self.dws.cell(row,4)).replace('text:','').replace("'",''))
                 break
