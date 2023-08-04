@@ -14,6 +14,8 @@ class dimm_inventory:
                 ssh_result = str(ssh_result).replace('\n','')
             except:
                 print('Unable to establish SSH connection...')
+                os.popen('rm ssh_test.txt')
+                quit()
             os.popen('rm ssh_test.txt')
         return ssh_result
     
@@ -21,9 +23,7 @@ class dimm_inventory:
         with open('node.txt') as node_file:
             node = node_file.readline()
             node = str(node).replace('\n','')
-            #print(node)
-            
-            self.dmidecode_info = os.system(f'ssh -q -o "StrictHostKeyChecking no" {node} ls')# dmidecode -t memory | grep -B6 Serial').read()
+            self.dmidecode_info = os.popen(f'ssh -q -o "StrictHostKeyChecking no" {node}  dmidecode -t memory | grep -B6 Serial').read()
             print(self.dmidecode_info)
             self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
             self.dmidecode_info = self.dmidecode_info.split('--')
