@@ -23,7 +23,7 @@ class dimm_inventory:
             node = str(node).replace('\n','')
             print(node)
             
-            self.dmidecode_info = os.popen(f'ssh -q -o "StrictHostKeyChecking no" ConnectTimeout=5 {node} dmidecode -t memory | grep -B6 Serial').read()
+            self.dmidecode_info = os.popen(f'ssh -q -o "StrictHostKeyChecking no" {node} dmidecode -t memory | grep -B6 Serial').read()
             self.dmidecode_info = self.dmidecode_info.replace('\n','').replace('\t','')
             self.dmidecode_info = self.dmidecode_info.split('--')
             print(self.dmidecode_info)
