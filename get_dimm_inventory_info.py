@@ -92,7 +92,7 @@ def main():
                 with open('dimm inventory.csv','a',encoding = 'utf-8') as file:
                     full_dimm_info = full_dimm_info.replace('|',',')
                     file.write(location_list[index]+','+full_dimm_info+('\n'))
-            print(tabulate(final_table, headers=headers, tablefmt="rounded_outline"))
+            print(tabulate(final_table, headers='\033[1m'+headers+'\033[0m', tablefmt="rounded_outline"))
             os.popen('rm dmidecode.txt')
         except:
             pass
